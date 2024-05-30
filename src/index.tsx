@@ -68,7 +68,10 @@ const Timer: Component<{
 
   return (
     <div
-      onClick={() => setCurrentlyActive(props.key)}
+      onClick={() => {
+        if (active()) setCurrentlyActive(null);
+        else setCurrentlyActive(props.key)
+      }}
       class="p-34 h-full flex items-center justify-center w-full relative cursor-pointer"
       style={{
         background: props.primaryColor,

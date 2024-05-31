@@ -10,6 +10,7 @@ const Timer: Component<{
   primaryColor: string
   /** Color of the text and elements inside the box. */
   secondaryColor: string
+  overTimeColor: string
 
   /** When pressing `r` to reset, the value goes back to this. */
   defaultTimeMS: number
@@ -18,12 +19,16 @@ const Timer: Component<{
   start: () => void
 }> = (props) => {
   const [currentTimeMS, setCurrentTimeMS] = createSignal(props.defaultTimeMS);
+  const isOverTime = () => currentTimeMS() <= 0;
   const keyDown = useKeyDownEvent();
 
   // Show in MM:SS format
+  // If negative, show -MM:SS format
   const formattedTime = () => {
-    const minutes = Math.floor(currentTimeMS() / 60_000);
-    const seconds = Math.floor((currentTimeMS() % 60_000) / 1000);
+    let timeMS = Math.abs(currentTimeMS());
+
+    const minutes = Math.floor(timeMS / 60_000);
+    const seconds = Math.floor((timeMS % 60_000) / 1000);
     const secondsAsString = seconds < 10 ? `0${seconds}` : `${seconds}`;
 
     return `${minutes}:${secondsAsString}`;
@@ -67,15 +72,25 @@ const Timer: Component<{
         if (props.active) timer.pause();
         else props.start();
       }}
-      class="p-34 h-full flex items-center justify-center w-full relative cursor-pointer"
+      class="w-full p-34 h-full flex flex-col items-center justify-center relative cursor-pointer"
       style={{
         background: props.primaryColor,
         color: props.secondaryColor
       }}
     >
-      <p class="text-[128px]">
+      <p class="text-[128px] font-medium"
+        style={{
+          color: isOverTime() ? props.overTimeColor : props.secondaryColor
+        }}
+      >
         {formattedTime()}
       </p>
+
+      {/* <Show when={isOverTime()}>
+        <p style={{ color: props.overTimeColor }}>
+          de temps dépassé
+        </p>
+      </Show> */}
 
       <Show when={props.active}>
         <div

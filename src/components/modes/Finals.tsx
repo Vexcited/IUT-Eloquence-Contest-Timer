@@ -17,8 +17,9 @@ const FinalsMode: Component = () => {
   return (
     <Timer
       active={timer.isFullWidthActive}
-      primaryColor="#fff"
-      secondaryColor="#000"
+      primaryColor="#eff1f5"
+      secondaryColor="#1e1e2e"
+      overTimeColor="#d20f39"
       defaultTimeMS={FINALS_DEFAULT_TIME_MS}
       start={() => timer.playFullWidth()}
     />

@@ -30,17 +30,21 @@ const SemiFinalsMode: Component = () => {
     <>
       <Timer
         active={timer.isLeftActive}
-        primaryColor="#fff"
-        secondaryColor="#000"
-        defaultTimeMS={SEMI_FINALS_DEFAULT_TIME_MS}
+        primaryColor="#eff1f5"
+        secondaryColor="#1e1e2e"
+        overTimeColor="#d20f39"
+        defaultTimeMS={1500}
+        // defaultTimeMS={SEMI_FINALS_DEFAULT_TIME_MS}
         start={() => timer.playLeft()}
       />
       
       <Timer
         active={timer.isRightActive}
-        primaryColor="#000"
-        secondaryColor="#fff"
-        defaultTimeMS={SEMI_FINALS_DEFAULT_TIME_MS}
+        primaryColor="#1e1e2e"
+        secondaryColor="#eff1f5"
+        overTimeColor="#f38ba8"
+        defaultTimeMS={1500}
+        // defaultTimeMS={SEMI_FINALS_DEFAULT_TIME_MS}
         start={() => timer.playRight()}
       />
     </>

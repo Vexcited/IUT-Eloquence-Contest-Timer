@@ -4,4 +4,5 @@ import unocss from "unocss/vite";
 
 export default defineConfig({
   plugins: [unocss(), solid()],
+  server: { port: 3000, strictPort: true }
 })

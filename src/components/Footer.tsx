@@ -21,7 +21,7 @@ const Footer: Component = () => {
             Demi-finales
           </Match>
           <Match when={mode.isFinals}>
-            Finale
+            Finales
           </Match>
         </Switch>
       </button>
